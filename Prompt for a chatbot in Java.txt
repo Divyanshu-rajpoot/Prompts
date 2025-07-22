@@ -1,0 +1,94 @@
+💬 Copilot MASTER PROMPT (Command-Line Gemini Chatbot)
+
+// GitHub Copilot prompt:
+/**
+ * Create a Spring Boot command-line chatbot app using Gemini API.
+ * 
+ * Requirements:
+ * - Use Java and Spring Boot.
+ * - Use CommandLineRunner to accept input from the console in a loop.
+ * - Send user input to Gemini API and display response in console.
+ * - Use RestTemplate or WebClient to call: 
+ *   https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent
+ * - Use application.properties to store the Gemini API key securely.
+ * - Input ends when user types "exit".
+ */
+
+
+Prompt Copilot to format this JSON for the POST request body:
+
+{
+  "contents": [
+    {
+      "parts": [
+        { "text": "Hello, how are you?" }
+      ]
+    }
+  ]
+}
+
+
+Add headers:
+
+Content-Type: application/json
+
+Authorization: Bearer YOUR_API_KEY
+
+
+1. application.properties Prompt properties
+
+# GitHub Copilot prompt:
+# Add this line to application.properties to store API key securely
+gemini.api.key=YOUR_GEMINI_API_KEY
+
+2. Prompt to Implement the Chat Runner Class java
+
+// GitHub Copilot prompt:
+/**
+ * Create a class CommandLineChatBot that implements CommandLineRunner.
+ * - Use Scanner to read input from terminal.
+ * - Call GeminiChatService to get bot response.
+ * - Print bot response to console.
+ * - Exit on user input "exit".
+ */
+
+3. GeminiChatService Class Prompt
+
+// GitHub Copilot prompt:
+/**
+ * Create GeminiChatService with a method `String getBotReply(String userInput)`
+ * - Use RestTemplate
+ * - Prepare JSON request to Gemini API
+ * - Extract response from JSON and return the bot's message
+ * - Read the Gemini API key from application.properties using @Value
+ */
+
+4. Sample Chat Flow
+
+You: Hello, bot!
+Bot : Hi there! How can I help you today?
+
+You: Tell me a joke
+Bot : Why don’t scientists trust atoms? Because they make up everything!
+
+You: exit
+Bot : Bye!
+
+---------------------------------------------------------------------------------------------------------
+
+
+Option 2: CLI (if you prefer command line)
+
+curl https://start.spring.io/starter.zip \
+  -d dependencies=web,configuration-processor \
+  -d language=java \
+  -d type=maven-project \
+  -d groupId=com.example \
+  -d artifactId=chatbot \
+  -d name=chatbot \
+  -d javaVersion=17 \
+  -o chatbot.zip
+
+unzip chatbot.zip
+cd chatbot
+
